@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+
+
+{% if tag is defined %}
+    {% set title = 'Edit Tag' %}
+    {% set action_url = url_for('edit_tag', id=tag.id) %}
+    {% set submit_button_text = 'Save' %}
+    {% set cancel_url = url_for('show_tag', id=tag.id) %}
+{% else %}
+    {% set tag = {} %}
+    {% set title = 'Add Tag' %}
+    {% set action_url = url_for('new_tag') %}
+    {% set submit_button_text = 'Add' %}
+    {% set cancel_url = url_for('list_tags') %}
+{% endif %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="offset-3 col-6">
+        <h1>{{ title }}</h1>
+    </div>
+
+    <div class="offset-3 col-6">
+        <form class="border rounded p-3" action="{{ action_url }}" method="POST">
+            <div class="form-group">
+                <label for="first_name">Name</label>
+                <input class="form-control" id="name" name="name" 
+                    type="text" value="{{ tag.name|default('') }}" required>
+            </div>
+    
+            <div class="form-group mb-0 text-right">
+                <button type="submit" class="btn btn-primary">{{ submit_button_text }}</button>
+                <a class="btn btn-outline-primary" href="{{ cancel_url }}">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

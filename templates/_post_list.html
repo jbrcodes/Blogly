@@ -1,0 +1,11 @@
+<ol class="post-list">
+    {% for p in posts %}
+        <li>
+            <h2 class="mt-3 mb-0"><a href="{{ url_for('show_post', id=p.id) }}">{{ p.title }}</a></h2>
+            <div class="">{{ p.content }}</div>
+            <div class="meta">
+                By: {{ p.user.full_name }} | {{ p.created_at|format_datetime }}
+            </div>
+        </li>
+    {% endfor %}
+</ol>

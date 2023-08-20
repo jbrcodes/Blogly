@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+
+
+{% if post is defined %}
+    {% set title = 'Edit Post' %}
+    {% set action_url = url_for('edit_post', id=post.id) %}
+    {% set submit_button_text = 'Save' %}
+    {% set cancel_url = url_for('show_post', id=post.id) %}
+{% else %}
+    {% set post = {} %}
+    {% set title = 'Add Post for ' + user.full_name %}
+    {% set action_url = url_for('new_post', user_id=user.id) %}
+    {% set submit_button_text = 'Add' %}
+    {% set cancel_url = url_for('list_posts') %}
+{% endif %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="offset-3 col-6">
+        <h1>{{ title }}</h1>
+    </div>
+
+    <div class="offset-3 col-6">
+        <form class="border rounded p-3" action="{{ action_url }}" method="POST">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input class="form-control" id="title" name="title" 
+                    type="text" value="{{ post.title|default('') }}" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="content">Content</label>
+                <textarea class="form-control" id="content" name="content" 
+                    rows="5">{{ post.content|default('') }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Tags</label>
+                {% for t in all_tags %}
+                    <div class="form-check">
+                        <input class="form-check-input" name="tags" type="checkbox" 
+                            {% if t in post_tags %}checked{% endif %} value="{{ t.name }}">
+                        <label class="form-check-label">{{ t.name }}</label>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="form-group mb-0 text-right">
+                <button type="submit" class="btn btn-primary">{{ submit_button_text }}</button>
+                <a class="btn btn-outline-primary" href="{{ cancel_url }}">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="jumbotron pt-1 pb-2 text-center">
+    <div style="font-size: 3.5rem">Jim's Blogly</div>
+</div>
+
+<div class="container">
+    <h1>(Five) Recent Posts</h1>
+    {% include '_post_list.html' %}
+</div>
+{% endblock %}

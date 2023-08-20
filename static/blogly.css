@@ -1,0 +1,27 @@
+.post-list {
+    padding-left: 1rem;
+}
+
+.post-list h2 {
+    font-size: 1.2rem;
+}
+
+.meta {
+    font-size: smaller;
+}
+
+.user-list {
+    padding-left: 1rem;
+}
+
+.tag-list {
+    display: inline-block;
+    list-style-type: none;
+    line-height: 1em;
+    margin: 0;
+    padding: 0;
+}
+
+.tag-list li {
+    display: inline-block;
+}
