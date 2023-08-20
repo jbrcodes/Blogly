@@ -10,6 +10,11 @@ For RuntimeError errors from db.create_all():
 https://stackoverflow.com/a/73962250
 
 
+Deployment
+----------
+
+
+
 To Do
 -----
 
